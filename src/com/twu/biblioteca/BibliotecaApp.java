@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class BibliotecaApp {
 
@@ -22,11 +19,13 @@ public class BibliotecaApp {
         System.out.println("Type 0 and press enter to... if you want to quit. ");
         System.out.println("Type 1 and press enter to... display a list of books in the library. ");
 
-        int userInput;
+//        int userInput;
         while (true) {
             Scanner sc = new Scanner(System.in);
-            userInput = sc.nextInt();
-            if (userInput == 0) {
+
+            try {
+                int userInput = sc.nextInt();
+                if (userInput == 0) {
                 System.out.println("Exiting now...");
                 break;
             } else if (userInput != 1) {
@@ -35,8 +34,13 @@ public class BibliotecaApp {
                 System.out.println(userInput);
                 break;
             }
+                } catch(InputMismatchException exception){
+                    System.out.println("Please select a valid option!");
+                }
+
+//
+            }
+
+
         }
-
-
     }
-}
