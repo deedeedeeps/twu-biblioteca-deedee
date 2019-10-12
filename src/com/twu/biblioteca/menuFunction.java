@@ -11,7 +11,7 @@ public class menuFunction {
         while (!exit) {
             System.out.println(printMenu());
             int userInput = getUserInput();
-            doUserInput(userInput);
+            choice1(userInput);
         }
     }
 
@@ -21,6 +21,11 @@ public class menuFunction {
         optionListBooks = "Type 1 and press enter to... display a list of books available in the library.";
         menu = optionExit + optionListBooks;
         return menu;
+    }
+
+    public static void printMenu2(){
+        System.out.println("Type 2 and press enter to... borrow a book");
+        System.out.println("Type 3 and press enter to... return a book");
     }
 
     public static int getUserInput() {
@@ -35,12 +40,30 @@ public class menuFunction {
         return userInput;
     }
 
-    public static void doUserInput(int userInput){
+    public static String userBookInput(){
+        Scanner sc = new Scanner(System.in);
+        String userInput;
+        userInput = sc.nextLine();
+        return userInput;
+    }
+
+    public static void choice1(int userInput){
         if(userInput == 1){
             System.out.println("Here is a list of books available in the library:");
             bookList.printBookList();
+            printMenu2();
+            choice2(getUserInput());
         } else if (userInput == 0){
             exit = true;
+        }
+    }
+
+    public static void choice2(int userInput){
+        if (userInput ==2){
+            System.out.println("Enter the name of the book you would like to borrow");
+            System.out.println(borrow.borrowBook(userBookInput(), bookList.bookList()));
+        } else if (userInput == 3){
+            System.out.println("Enter the name of the book you would like to return. ");
         }
     }
 }
