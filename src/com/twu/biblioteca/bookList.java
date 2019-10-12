@@ -17,6 +17,7 @@ public class bookList {
     }
 
     public static void printBookList(){
+//        new bookList();
         for(int i=0; i<bookList.size(); i++){
             System.out.println(bookList.get(i).bookString());
         }
