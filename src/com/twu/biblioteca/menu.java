@@ -26,6 +26,7 @@ public class menu {
             } else {
                 System.out.println(invalid);
                 dispMenu1();
+                System.out.println("B");
             }
         }
         return "HI";
@@ -67,17 +68,29 @@ public class menu {
             if (userInput2 == 1 || userInput2 == 2) {
                 Output2(userInput2);
             } else {
-                Output2(userInput2);
+                Output2(userInput2); // do i need this line?
                 System.out.println(invalid);
             }
         } else if (userInput1 == 0) {
             System.out.println(quitStr);
             quit = true;
-        } else if (userInput1 == 2) {
-            System.out.println("_____________________________________________");
-            System.out.println("Here is a list of available movies:");
+        } else if (userInput1 == 2){
             movieList.printMovieList();
+            dispMovieMenu2();
+            int userInput2 = getPosInt();
+            if (userInput2 == 1){
+                OutputMovie2(userInput2);
+            } else {
+                OutputMovie2(userInput2); // do i need this line?
+                System.out.println(invalid);
+            }
         }
+    }
+
+    public static void dispMovieMenu2() {
+        System.out.println("\nType 0 and press enter to... quit the app.");
+        System.out.println("Type 1 and press enter to... borrow a movie.");
+
     }
 
     /* Displayed after the user presses 1 from the first menu function*/
@@ -95,20 +108,33 @@ public class menu {
 
         if (userInput == 1) { /* Borrow a book */
             System.out.println(borrowStr);
-            System.out.println(borrow.borrowBook(bookList.getBookList(), getUserBookInput()));
+            System.out.println(borrow.borrowBook(bookList.getBookList(), getUserBookMovieInput()));
         } else if (userInput == 2) { /* Return a book */
             System.out.println(returnStr);
-            System.out.println(returnItem.ReturnBook(borrow.getBorrowedList(), bookList.getBookList(), getUserBookInput()));
+            System.out.println(returnItem.ReturnBook(borrow.getBorrowedList(), bookList.getBookList(), getUserBookMovieInput()));
         } else if (userInput == 0) { /* Quit the app */
             System.out.println(quitStr);
             System.exit(0);
         }
     }
 
+    public static void OutputMovie2(int userInput){
+        String borrowStr = "\nType the title of the movie that you would like to borrow and press enter.";
+        if (userInput == 1){
+            System.out.println(borrowStr);
+            System.out.println(borrow.borrowMovie(borrow.getMovieList(), getUserBookMovieInput()));
+        } else if (userInput == 0){
+             System.out.println(quitStr);
+             System.exit(0);
+        }
+    }
+
     /* Gets string of book title to either be borrowed or returned */
-    public static String getUserBookInput() {
+    public static String getUserBookMovieInput() {
         String userInput;
         userInput = sc.nextLine();
         return userInput;
     }
+
+
 }

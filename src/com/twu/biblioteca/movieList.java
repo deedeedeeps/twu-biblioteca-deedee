@@ -26,7 +26,7 @@ public class movieList {
     }
 
 
-    public static ArrayList<movie> getMovieListList() {
+    public static ArrayList<movie> getMovieList() {
         return movieList;
     }
 }
