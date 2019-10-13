@@ -1,47 +1,44 @@
 package com.twu.biblioteca;
 
-import java.util.*;
+import java.util.ArrayList;
 
 public class borrow {
-    private static ArrayList<Book> borrowedBooks = new ArrayList<Book>();
 
-    public static String sucessOrNot(String success) {
-        String message;
-        if (success.equals("TRUE")) {
-            message = "Thank you! Enjoy the book.";
-        } else {
-            message = "Sorry, that book is not available.";
-        }
-        return message;
+    /* Returns "book available or not" messsage */
+    public static String availableOrNot(String TRUE){
+        String availbleOrNotFeedback;
+        if(TRUE.equals("TRUE")){
+            availbleOrNotFeedback = "Thank you! Enjoy the book.\n";
+        } else{
+            availbleOrNotFeedback = "Sorry that book is not available.\n";
+        } return availbleOrNotFeedback;
     }
 
-    public static String borrowBook(String userInputTitle, ArrayList<Book> availableList) {
-        boolean available = true;
-        String availableOrNot;
-        for (int i = 0; i < availableList.size(); i++) {
-            if (availableList.get(i).title.equals(userInputTitle)) {
-                borrowedBooks.add(availableList.get(i));
-                availableOrNot = sucessOrNot("TRUE");
+    /* Initialize a borrowedList of borrowed books */
+    public static ArrayList<Book> borrowedList = new ArrayList<Book>();
+    /* And returns it */
+    public static ArrayList<Book> getBorrowedList(){
+        return borrowedList;
+    }
+
+    /* Checks to see if a book is available to be borrowed */
+    public static String borrowBook(ArrayList<Book> availableList, String userBook){
+        boolean available = false;
+        String successOrNot = "";
+        /* Iterates over available list to see if the book the user wants is available */
+        for (int i = 0; i< availableList.size();i++){
+            if (availableList.get(i).title.equals(userBook)){
+                successOrNot =  availableOrNot("TRUE");
+                borrowedList.add(availableList.get(i));
                 availableList.remove(i);
-                available = false;
-                System.out.println(availableOrNot);
+                available = true;
                 break;
-            } if(!available){
-                availableOrNot = sucessOrNot("FALSE");
-                System.out.println(availableOrNot);
             }
-        } return "HI";
+        } /* If it is not available display the unavailable message and start over */
+        if (available == false){
+            successOrNot = availableOrNot("FALSE");
+        }
+        return successOrNot;
     }
 
-    public static boolean bookAvailability(String input, ArrayList<Book> bookList){
-        boolean available = true;
-        for (int i = 0; i<bookList.size();i++){
-            if(bookList.get(i).title.equals(input)){
-                available = false;
-                break;
-            } else{
-                available = true;
-            }
-        } return available;
-    }
 }

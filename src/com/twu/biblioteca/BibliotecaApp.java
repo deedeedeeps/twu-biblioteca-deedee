@@ -5,15 +5,13 @@ import java.util.*;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to Biblioteca! \nYour one-stop-shop for great book titles in Bangalore!\n");
-        new bookList().bookList();
-        menuFunction.menuFunction();
-//        bookList.printBookList();
-
-
+        System.out.println(returnsWelcome());
+        menu.dispMenu1();
     }
 
-
-
+    public static String returnsWelcome(){
+        String welcome = "Welcome to Biblioteca. Your one-stop-shop for great book titles in Bangalore!";
+        return welcome;
+    }
 
 }
