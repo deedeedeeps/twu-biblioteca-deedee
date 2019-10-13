@@ -5,6 +5,7 @@ import java.util.*;
 public class BibliotecaApp {
 
     public static void main(String[] args) {
+        login.loginMenu();
         System.out.println(returnsWelcome());
         menu.dispMenu1();
     }
