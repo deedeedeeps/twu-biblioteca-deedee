@@ -9,8 +9,12 @@ public class returnItem {
         String returnSucessOrNotFeedback;
         if (TRUE.equals("TRUE")) {
             returnSucessOrNotFeedback = "Thank you for returning the book.\n";
+        } else if (TRUE.equals("TRUEMOVIE")) {
+            returnSucessOrNotFeedback = "Thank you for returning the movie.\n";
+        } else if (TRUE.equals("FALSEMOVIE")) {
+            returnSucessOrNotFeedback = "That is not a valid movie to return.\n";
         } else {
-            returnSucessOrNotFeedback = "That is not a valid book to return.\n";
+            returnSucessOrNotFeedback = "That is not a valid book to return\n";
         }
         return returnSucessOrNotFeedback;
     }
@@ -25,16 +29,38 @@ public class returnItem {
                 returnMessage = returnSucessOrNot("TRUE");
                 /* Add the book back to the list of all available books */
                 availableBookList.add(borroewedBookList.get(i));
-                /* Remove it from  */
+                /* Remove it from borrowed list */
                 borroewedBookList.remove(i);
                 available = true;
                 break;
             }
         }
         if (!available) {
-            returnMessage = returnSucessOrNot("FALSE");
+            returnMessage = returnSucessOrNot("FALSEBOOK");
         }
         return returnMessage;
 
     }
-}
+
+    public static String ReturnMovie(ArrayList<movie> borrowedMovieList, ArrayList<movie> availableMovieList, String input) {
+        String returnMessage = "";
+        boolean available = false;
+        for (int i = 0; i < borrowedMovieList.size(); i++) {
+            if (borrowedMovieList.get(i).name.equals(input)) {
+                /* If the book title the user wants to borrow is in the borrowed list */
+                returnMessage = returnSucessOrNot("TRUEMOVIE");
+                /* Add the book back to the list of all available books */
+                availableMovieList.add(borrowedMovieList.get(i));
+                /* Remove it from borrowed list */
+                borrowedMovieList.remove(i);
+                available = true;
+                break;
+            }
+        }
+        if (!available) {
+            returnMessage = returnSucessOrNot("FALSEMOVIE");
+        }
+        return returnMessage;
+
+    }
+};

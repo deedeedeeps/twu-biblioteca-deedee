@@ -9,6 +9,10 @@ public class borrow {
         String availbleOrNotFeedback;
         if (TRUE.equals("TRUE")) {
             availbleOrNotFeedback = "Thank you! Enjoy the book.\n";
+        } else if (TRUE.equals("TRUEMOVIE")) {
+            availbleOrNotFeedback = "Thank you! Enjoy the movie.\n";
+        } else if (TRUE.equals("FALSEMOVIE")) {
+            availbleOrNotFeedback = "Thank you! Enjoy the movie.\n";
         } else {
             availbleOrNotFeedback = "Sorry that book is not available.\n";
         }

@@ -26,7 +26,6 @@ public class menu {
             } else {
                 System.out.println(invalid);
                 dispMenu1();
-                System.out.println("B");
             }
         }
         return "HI";
@@ -74,11 +73,22 @@ public class menu {
         } else if (userInput1 == 0) {
             System.out.println(quitStr);
             quit = true;
-        } else if (userInput1 == 2){
+        } else if (userInput1 == 2) {
+            System.out.println("_____________________________________________________________________");
+            System.out.println("Here is a list of available movies:");
             movieList.printMovieList();
+            System.out.println("_____________________________________________________________________");
+             System.out.println("\nHere is a list of unavailable movies:");
+            for (int i = 0; i < borrow.getMovieList().size(); i++) {
+                System.out.println("--> " + borrow.getMovieList().get(i).name);
+            }
+            if (borrow.getMovieList().size() == 0) {
+                System.out.println("--> All movies are available in the library! ");
+            }
+            System.out.println("_____________________________________________");
             dispMovieMenu2();
             int userInput2 = getPosInt();
-            if (userInput2 == 1){
+            if (userInput2 == 1) {
                 OutputMovie2(userInput2);
             } else {
                 OutputMovie2(userInput2); // do i need this line?
@@ -90,7 +100,7 @@ public class menu {
     public static void dispMovieMenu2() {
         System.out.println("\nType 0 and press enter to... quit the app.");
         System.out.println("Type 1 and press enter to... borrow a movie.");
-
+        System.out.println("Type 2 and press enter to... return a movie.");
     }
 
     /* Displayed after the user presses 1 from the first menu function*/
@@ -118,14 +128,19 @@ public class menu {
         }
     }
 
-    public static void OutputMovie2(int userInput){
+    public static void OutputMovie2(int userInput) {
         String borrowStr = "\nType the title of the movie that you would like to borrow and press enter.";
-        if (userInput == 1){
+        String returnStr = "\nType the title of the movie that you would like to return and press enter.";
+
+        if (userInput == 1) {
             System.out.println(borrowStr);
-            System.out.println(borrow.borrowMovie(borrow.getMovieList(), getUserBookMovieInput()));
-        } else if (userInput == 0){
-             System.out.println(quitStr);
-             System.exit(0);
+            System.out.println(borrow.borrowMovie(movieList.getMovieList(), getUserBookMovieInput()));
+        } else if (userInput == 2) {
+            System.out.println(returnStr);
+            System.out.println(returnItem.ReturnMovie(borrow.getMovieList(), movieList.getMovieList(), getUserBookMovieInput()));
+        } else if (userInput == 0) {
+            System.out.println(quitStr);
+            System.exit(0);
         }
     }
 
